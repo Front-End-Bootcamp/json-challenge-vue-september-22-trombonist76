@@ -1,13 +1,17 @@
 import data from "../data.json"
 
 function getGroups(array){
-  const result = array.reduce((groupedObj,personObj)=>{
+  //Reduce methoduyla boş bir obje oluşturdum -groupedObj-. Fonksiyon kişi bilgilerini -personObj- değişkeniyle döndü.  
+  
+  return array.reduce((groupedObj,personObj)=>{
     const {group,name,type} = personObj
 
+  //Burada kişinin grubu, daha önce boş olan objeye -groupedObj- eklenmediyse aşağıdaki gibi key,value olarak ekleniyor.
     if(!(group in groupedObj)){
       groupedObj[group] = {student:[],assistant:""}
     }
 
+  //Burada ise kişi asistan ise objenin -assistant- prop'una ekleniyor. Katılımcı ise student dizisine ekleniyor.
     if(type === "assistant"){
       groupedObj[group].assistant = name
       
@@ -17,8 +21,6 @@ function getGroups(array){
 
     return groupedObj
   },{})
-
-  return result
 }
 
 function getGroupStudents(array,groupName){
