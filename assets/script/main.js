@@ -1,9 +1,9 @@
 import data from "../data.json"
 
-function getGroups(array){
+function getGroups(personArray){
   //Reduce methoduyla boş bir obje oluşturdum -groupedObj-. Fonksiyon kişi bilgilerini -personObj- değişkeniyle döndü.  
   
-  return array.reduce((groupedObj,personObj)=>{
+  return personArray.reduce((groupedObj,personObj)=>{
     const {group,name,type} = personObj
 
   //Burada kişinin grubu, daha önce boş olan objeye -groupedObj- eklenmediyse aşağıdaki gibi key,value olarak ekleniyor.
@@ -23,10 +23,14 @@ function getGroups(array){
   },{})
 }
 
-function getGroupStudents(array,groupName){
-  return getGroups(array)[groupName].student
+function getGroupStudents(personArray,groupName){
+  //Parametre olarak ismi alınan gruba ait bilgileri getiriyor.
+  return getGroups(personArray)[groupName] 
 }
 
-const student = getGroupStudents(data,"Orchid")
-console.log("Student:", student)
+
+const allGroups = getGroups(data)
+const selectedGroup = getGroupStudents(data,"Orchid")
+console.log("All groups", allGroups)
+console.log("Selected Group", selectedGroup)
 
